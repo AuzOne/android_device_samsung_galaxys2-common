@@ -17,6 +17,13 @@ COMMON_PATH := device/samsung/galaxys2-common
 
 DEVICE_PACKAGE_OVERLAYS := $(COMMON_PATH)/overlay
 
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+# The gps config appropriate for this device
+$(call inherit-product, device/common/gps/gps_us_supl.mk)
+
 # Rootdir
 PRODUCT_COPY_FILES := \
     $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210 \
@@ -77,6 +84,8 @@ PRODUCT_PACKAGES += \
     gralloc.exynos4 \
     hwcomposer.exynos4 \
     libnetcmdiface \
+    libsync \
+    libUMP \
     lights.exynos4 \
     libhwconverter \
     libs5pjpeg \
